@@ -25,11 +25,12 @@ namespace CadastroDeAlunosWindowsForms
         private void btnIncluir_Click(object sender, EventArgs e)
         {
             // Adiciona o conteúdo das caixas de texto nas colunas correspondentes
-            dgvAlunos.Rows.Add(txtNome.Text, txtCurso.Text);
+            dgvAlunos.Rows.Add(txtNome.Text, txtCurso.Text, txtCidade.Text);
 
             // Limpa as caixas de texto
             txtNome.Clear();
             txtCurso.Clear();
+            txtCidade.Clear();
 
             // Exibe uma mensagem ao usuário de inclusão com sucesso
             MessageBox.Show("Aluno Incluido com sucesso", "Inclusão",
@@ -65,6 +66,19 @@ namespace CadastroDeAlunosWindowsForms
                 // Move o conteúdo da primeira célula da linha selecionada para a caixa de texto
                 txtAlteracao.Text = dgvAlunos.CurrentRow.Cells[0].Value.ToString();
             }
+
+            if (dgvAlunos.RowCount > 0)
+            {
+                // Move o conteúdo da primeira célula da linha selecionada para a caixa de texto
+                txtAlteracaoCurso.Text = dgvAlunos.CurrentRow.Cells[1].Value.ToString();
+
+            }
+
+            if (dgvAlunos.RowCount > 0)
+            {
+                // Move o conteúdo da primeira célula da linha selecionada para a caixa de texto
+                txtAlteracaoCidade.Text = dgvAlunos.CurrentRow.Cells[2].Value.ToString();
+            }
         }
 
         private void btnAlterar_Click(object sender, EventArgs e)
@@ -78,6 +92,7 @@ namespace CadastroDeAlunosWindowsForms
                 MessageBox.Show("Aluno Alterado com sucesso", "Alterado",
                                 MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
             }
+            txtAlteracao.Clear();
         }
 
         private void btnTodos_Click(object sender, EventArgs e)
@@ -93,6 +108,44 @@ namespace CadastroDeAlunosWindowsForms
         {
             // Finaliza a aplicação
             Application.Exit();
+        }
+
+        private void txtAlteracaoCurso_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btnAlterarCurso_Click(object sender, EventArgs e)
+        {
+            if (txtAlteracaoCurso.Text != "")
+            {
+                // Move o novo valor da caixa de texto Alteração para a célula selecionada
+                dgvAlunos.CurrentRow.Cells[1].Value = txtAlteracaoCurso.Text;
+
+                // Exibe a mensagem de alteração com sucesso
+                MessageBox.Show("Curso Alterado com sucesso", "Alterado",
+                                MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+            }
+            txtAlteracaoCurso.Clear();
+        }
+
+        private void btnAlterarCidade_Click(object sender, EventArgs e)
+        {
+            if (txtAlteracaoCidade.Text != "")
+            {
+                // Move o novo valor da caixa de texto Alteração para a célula selecionada
+                dgvAlunos.CurrentRow.Cells[2].Value = txtAlteracaoCidade.Text;
+
+                // Exibe a mensagem de alteração com sucesso
+                MessageBox.Show("Cidade Alterada com sucesso", "Alterada",
+                                MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+            }
+            txtAlteracaoCidade.Clear();
+        }
+
+        private void txtNome_TextChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }
